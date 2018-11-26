@@ -2,7 +2,10 @@ from rest_framework import serializers
 from .models import Consulta, Individuo
 from django.core.validators import MaxValueValidator, MinValueValidator
 
-class IndividuoSerializer(serializers.ModelSerializer)
+class IndividuoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Individuo
+        fields = '__all__'
 
 
 class ConsultaSerializer(serializers.ModelSerializer):
