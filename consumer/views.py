@@ -28,9 +28,10 @@ class ConsultaCreateAPIView(CreateAPIView):
         return consulta
     
     def send_email(self, consulta):
+        serializer = self.get_serializer(consulta)
         send_mail(
             'Consulta Financiamento',
-            'Here is the message.',
+            serializer.data,
             settings.EMAIL_HOST_USER,
             [consulta.individuo.email],
         )
