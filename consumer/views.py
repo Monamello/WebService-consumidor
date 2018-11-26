@@ -28,7 +28,6 @@ class ConsultaCreateAPIView(CreateAPIView):
         return consulta
     
     def send_email(self, consulta):
-        import ipdb; ipdb.set_trace()
         send_mail(
             'Consulta Financiamento',
             'Here is the message.',
