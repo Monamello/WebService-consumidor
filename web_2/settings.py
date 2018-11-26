@@ -122,3 +122,9 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 URL_CONSULTA = 'http://localhost:8000/financiamento/consulta'
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'consulta.atividade.web@gmail.com'
+EMAIL_HOST_PASSWORD = 'Consult@Atividadew3b'

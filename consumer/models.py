@@ -45,6 +45,7 @@ class Individuo(models.Model):
     nome_completo = models.CharField(max_length=256)
     data_nascimento = models.DateField()
     tem_fgts = models.BooleanField()
+    email = models.EmailField(blank=True, null= True)
     valor_fgts = models.FloatField(validators=[MinValueValidator(0)])
 
     def __str__(self):
