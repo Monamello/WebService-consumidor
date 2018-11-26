@@ -23,6 +23,7 @@ class ConsultaSerializer(serializers.ModelSerializer):
 
 class ConsultaEmailSerializer(serializers.ModelSerializer):
     individuo = IndividuoSerializer()
+    simulacao = serializers.ListField(serializers.DictField())
 
     class Meta:
         model = Consulta

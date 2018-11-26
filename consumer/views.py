@@ -7,6 +7,7 @@ from django.core.mail import send_mail
 from rest_framework.response import Response
 from django.conf import settings
 import requests
+import json
 
 
 
@@ -14,7 +15,7 @@ class ConsultaCreateAPIView(CreateAPIView):
     queryset = Consulta.objects.all()
     serializer_class = ConsultaSerializer
 
-    def save_consulta(self, validated_data, json, config):
+    def save_consulta(self, validated_data, json_consulta, config):
         individuo = Individuo()
         individuo.set_data_in_object(validated_data)
         individuo.save()
@@ -23,15 +24,16 @@ class ConsultaCreateAPIView(CreateAPIView):
         consulta.set_data_in_object(validated_data)
 
         consulta.individuo = individuo
-        consulta.simulacao = consulta.capaz_pagar(json, config)
+        consulta.simulacao = consulta.capaz_pagar(json_consulta, config)
         consulta.save()
         return consulta
     
     def send_email(self, consulta):
         serializer = ConsultaEmailSerializer(consulta)
+        json_consulta = json.dumps(serializer.data, indent=4)
         send_mail(
             'Consulta Financiamento',
-            serializer.data,
+            json_consulta,
             settings.EMAIL_HOST_USER,
             [consulta.individuo.email],
         )
