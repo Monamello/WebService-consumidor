@@ -2,6 +2,8 @@ from rest_framework import serializers
 from .models import Consulta, Individuo
 from django.core.validators import MaxValueValidator, MinValueValidator
 
+class IndividuoSerializer(serializers.ModelSerializer)
+
 
 class ConsultaSerializer(serializers.ModelSerializer):
     cpf = serializers.CharField(max_length=14)
@@ -14,4 +16,12 @@ class ConsultaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Consulta
         exclude = ('individuo', 'simulacao')
+
+
+class ConsultaEmailSerializer(serializers.ModelSerializer):
+    individuo = IndividuoSerializer()
+
+    class Meta:
+        model = Consulta
+        fields = '__all__'
 

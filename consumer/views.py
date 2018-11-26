@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework.generics import CreateAPIView
 from .models import Consulta, Individuo, Configuracoes
-from .serializers import ConsultaSerializer
+from .serializers import ConsultaSerializer, ConsultaEmailSerializer
 from rest_framework import status
 from django.core.mail import send_mail
 from rest_framework.response import Response
@@ -28,7 +28,7 @@ class ConsultaCreateAPIView(CreateAPIView):
         return consulta
     
     def send_email(self, consulta):
-        serializer = self.get_serializer(consulta)
+        serializer = ConsultaEmailSerializer(consulta)
         send_mail(
             'Consulta Financiamento',
             serializer.data,
