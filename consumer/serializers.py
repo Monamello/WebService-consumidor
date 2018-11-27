@@ -18,7 +18,7 @@ class ConsultaSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Consulta
-        exclude = ('individuo', 'simulacao')
+        exclude = ('individuo', 'simulacao', 'data_insercao')
 
 
 class ConsultaEmailSerializer(serializers.ModelSerializer):

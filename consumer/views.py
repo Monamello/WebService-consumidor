@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from rest_framework.generics import CreateAPIView
+from rest_framework.generics import CreateAPIView, ListAPIView
 from .models import Consulta, Individuo, Configuracoes
 from .serializers import ConsultaSerializer, ConsultaEmailSerializer
 from rest_framework import status
@@ -58,3 +58,8 @@ class ConsultaCreateAPIView(CreateAPIView):
                 return Response(consulta.simulacao)
             return Response(response.json(), status=status.HTTP_400_BAD_REQUEST)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class ConsultaListAPIView(ListAPIView):
+    queryset = Consulta.objects.order_by('data_insercao')
+    serializer_class = ConsultaEmailSerializer

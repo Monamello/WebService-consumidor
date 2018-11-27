@@ -24,6 +24,7 @@ class Consulta(models.Model):
     quantidade_parcelas = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(540.0)])
     renda_individuo = models.FloatField(validators=[MinValueValidator(1)])
     individuo = models.ForeignKey('Individuo', on_delete=models.CASCADE, null=True)
+    data_insercao = models.DateTimeField(auto_now_add=True)
     simulacao = JSONField()
 
     def set_data_in_object(self, data):

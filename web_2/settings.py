@@ -144,4 +144,9 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = 'consulta.atividade.web@gmail.com'
 EMAIL_HOST_PASSWORD = 'Consult@Atividadew3b'
 
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE' : 10
+}
+
 django_heroku.settings(locals())

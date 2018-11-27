@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.shortcuts import redirect
-from consumer.views import ConsultaCreateAPIView
+from consumer.views import ConsultaCreateAPIView, ConsultaListAPIView
 
 def redirect_consulta(request):
     return redirect('consulta')
@@ -27,4 +27,5 @@ urlpatterns = [
     path('api-auth/', include('rest_framework.urls')),
     path('', redirect_consulta),
     path('financiamento/consulta', ConsultaCreateAPIView.as_view(), name='consulta'),
+    path('financiamento/consultas', ConsultaListAPIView.as_view(), name='consultas'),
 ]
